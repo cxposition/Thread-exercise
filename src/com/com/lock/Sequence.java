@@ -24,7 +24,15 @@ public class Sequence {
             @Override
             public void run() {
                 while (true)
-                System.out.println(s.getNext());
+                System.out.println(Thread.currentThread().getName()+";"+s.getNext());
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true)
+                    System.out.println(Thread.currentThread().getName()+":"+s.getNext());
             }
         }).start();
     }

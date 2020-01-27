@@ -17,19 +17,27 @@ public class Mylock implements Lock {
 //    private int value;
 //    Lock lock = new ReentrantLock();
 //    private Mylock lock = new Mylock();
-
+    //定义一把锁
     private boolean isLocked = false;
+    //
+    private Thread lockBy = null;
+
+    private int lockCount = 0;
 
     @Override
     public synchronized void lock()
     {
-        while (isLocked)
+        Thread currentThread = Thread.currentThread();
+
+        while (isLocked && currentThread != lockBy)
         try {
             wait();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         isLocked = true;
+        lockBy = currentThread;
+        lockCount++;
     }
 
     @Override
@@ -49,6 +57,13 @@ public class Mylock implements Lock {
 
     @Override
     public synchronized void unlock(){
+        if (lockBy == Thread.currentThread()){
+            lockCount--;
+            if (lockCount == 0){
+                notify();
+                isLocked = false;
+            }
+        }
         isLocked = false;
         notify();
     }
