@@ -13,17 +13,18 @@ public class InsertSort {
         {
             /**第一步保存待插入元素的数值*/
             int temp = array[j];
+            int i = j-1;
             /**内循环遍历有序序列*/
-            for (int i = j-1; i >= 0 && temp < array[i] ; i--)
+            for (; i >= 0 && temp < array[i] ; i--)
             {
                 array[i+1] = array[i];
-                array[i] = temp;
             }
+            array[i+1] = temp;
         }
     }
     public static void main(String[] args)
     {
-        int[] a = {1,9,38,23,56,10,189,47,25,100};
+        int[] a = {9,1,38,23,56,10,189,47,25,100};
         insertSort(a);
         for (int i = 0; i < a.length; i++)
         {
