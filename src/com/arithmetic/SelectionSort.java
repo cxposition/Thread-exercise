@@ -5,7 +5,7 @@ package com.arithmetic;
  * @Time 2020/1/31 21:15
  * @Description 选择排序
  */
-public class Selection {
+public class SelectionSort {
 //    static Example em = new Example();
 //    public  void sort(Comparable[] a)
 //    {

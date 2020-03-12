@@ -8,7 +8,7 @@ package com.arithmetic;
 public class InsertSort {
     public static void insertSort(int[] array)
     {
-        /**外循环遍历无须序列*/
+        /**外循环遍历无须序列，从元素下标1开始默认左边第一个元素为有序序列，左边的元素为有序序列，右边的元素为无序序列*/
         for (int j = 1; j < array.length; j++)
         {
             /**第一步保存待插入元素的数值*/
